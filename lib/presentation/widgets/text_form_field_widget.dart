@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
 import 'package:ghaith_test/core/constants/text_styles.dart';
 
-class TextFielWidget extends StatelessWidget {
+class TextFieldWidget extends StatelessWidget {
   final String hintText;
-  final bool? isobscureText;
+  final bool? obscureText;
   final Widget? suffixIcon;
   final EdgeInsetsGeometry? contentPadding;
   final TextStyle? hintStyle;
@@ -13,28 +13,36 @@ class TextFielWidget extends StatelessWidget {
   final OutlineInputBorder? focusedBorder;
   final OutlineInputBorder? enabledBorder;
   final Color? backgroundColor;
-  const TextFielWidget(
-      {super.key,
-      required this.hintText,
-      this.contentPadding,
-      this.hintStyle,
-      this.inputTextStyle,
-      this.focusedBorder,
-      this.enabledBorder,
-      this.suffixIcon,
-      this.isobscureText,
-      this.backgroundColor});
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+
+  const TextFieldWidget({
+    super.key,
+    required this.hintText,
+    this.obscureText,
+    this.suffixIcon,
+    this.contentPadding,
+    this.hintStyle,
+    this.inputTextStyle,
+    this.focusedBorder,
+    this.enabledBorder,
+    this.backgroundColor,
+    this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyles.font13darkluemiduim,
-      obscureText: isobscureText ?? false,
+      controller: controller,
+      validator: validator,
+      style: inputTextStyle ?? TextStyles.body,
+      obscureText: obscureText ?? false,
       decoration: InputDecoration(
         filled: true,
         fillColor: backgroundColor ?? ColorsManager.textfieldcolor,
         suffixIcon: suffixIcon,
-        hintStyle: hintStyle ?? TextStyles.hinttextfield,
+        hintStyle: hintStyle ?? TextStyles.hintText,
         hintText: hintText,
         isDense: true,
         contentPadding: contentPadding ??

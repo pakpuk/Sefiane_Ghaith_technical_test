@@ -1,5 +1,5 @@
 name: ghaith_test
-description: "Technical Test Flutter by Ghaith"
+description: "Technical Test Flutter - Task Management App by Ghaith"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -17,17 +17,17 @@ dependencies:
   # State Management
   provider: ^6.1.2
 
+  # Dialogs
+  panara_dialogs: ^0.1.5
+
   # API / HTTP simulation
   dio: ^5.7.0
 
-  # JSON local support
-  flutter/services.dart: any 
-
-  #  GPS & Map
+  # GPS & Map (Bonus)
   geolocator: ^11.1.0
   google_maps_flutter: ^2.7.0
 
- 
+  # Icons
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -40,7 +40,7 @@ flutter:
 
   assets:
     - assets/tasks.json
-     #- assets/images/
+    # - assets/images/
 
   fonts:
     - family: Poppins
