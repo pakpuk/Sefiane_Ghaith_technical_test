@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               scaffoldBackgroundColor: ColorsManager.whitecolor,
               primaryColor: ColorsManager.primary,
-              useMaterial3: true,
             ),
             home: const LoginScreen(),
           );
