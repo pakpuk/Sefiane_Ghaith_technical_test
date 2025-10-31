@@ -45,5 +45,17 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- ✅ نضيف هذه المفاتيح لطلب صلاحيات الموقع -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Nous avons besoin de votre position pour afficher la carte.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Votre position est utilisée pour afficher la carte en temps réel.</string>
+
+	<!-- ✅ مفتاح Google Maps API لـ iOS -->
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>GMSApiKey</key>
+	<string>YOUR_IOS_API_KEY_HERE</string>
 </dict>
 </plist>
