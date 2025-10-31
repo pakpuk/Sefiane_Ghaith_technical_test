@@ -17,28 +17,28 @@ class TextStyles {
     color: ColorsManager.blackcolor,
   );
 
-  // 🔹 Subtitles
+  //  Subtitles
   static TextStyle subtitle = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.medium,
     color: ColorsManager.greycolor,
   );
 
-  // 🔹 Body
+  //  Body
   static TextStyle body = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManager.darkblue,
   );
 
-  // 🔹 Buttons
+  //  Buttons
   static TextStyle buttonText = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.semibold,
     color: Colors.white,
   );
 
-  // 🔹 Hints / small texts
+  //  Hints / small texts
   static TextStyle hintText = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.normal,
@@ -50,4 +50,9 @@ class TextStyles {
     fontWeight: FontWeightHelper.normal,
     color: ColorsManager.greycolor,
   );
+
+  static TextStyle font13semiboldprimary = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeightHelper.semibold,
+      color: ColorsManager.primary);
 }
