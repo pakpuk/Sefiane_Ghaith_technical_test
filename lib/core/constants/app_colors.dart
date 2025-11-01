@@ -10,4 +10,5 @@ class ColorsManager {
   static const Color textfieldbordercolor = Color(0xFFEDEDED);
   static const Color textlightgrey = Color(0xFFC2C2C2);
   static const Color redAccent = Colors.redAccent;
+  static const Color greenColor = Colors.green;
 }

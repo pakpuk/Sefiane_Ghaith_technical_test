@@ -55,4 +55,9 @@ class TextStyles {
       fontSize: 13.sp,
       fontWeight: FontWeightHelper.semibold,
       color: ColorsManager.primary);
+
+  static TextStyle font13bold = TextStyle(
+      fontSize: 13.sp,
+      fontWeight: FontWeightHelper.bold,
+      color: ColorsManager.blackcolor);
 }
