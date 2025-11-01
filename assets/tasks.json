@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Aller à la pharmacie",
+    "description": "Acheter les médicaments pour le traitement du mois.",
+    "isCompleted": false,
+    "latitude": 36.7538,
+    "longitude": 3.0588
+  },
+  {
+    "id": 2,
+    "title": "Rendez-vous chez le médecin",
+    "description": "Consultation prévue demain à 10h avec le Dr. Amine.",
+    "isCompleted": true,
+    "latitude": 36.7525,
+    "longitude": 3.0419
+  },
+  {
+    "id": 3,
+    "title": "Appeler le laboratoire",
+    "description": "Demander les résultats de l’analyse sanguine.",
+    "isCompleted": false,
+    "latitude": null,
+    "longitude": null
+  },
+  {
+    "id": 4,
+    "title": "Faire une promenade",
+    "description": "Petite balade pour se détendre après le travail.",
+    "isCompleted": false,
+    "latitude": 36.7675,
+    "longitude": 3.0482
+  },
+  {
+    "id": 5,
+    "title": "Vérifier les rendez-vous du mois",
+    "description": "Mettre à jour le planning et les prochaines consultations.",
+    "isCompleted": true,
+    "latitude": null,
+    "longitude": null
+  }
+]

@@ -17,16 +17,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TaskDetailScreen()));
-        },
-        child: const Icon(
-          Icons.add,
-          color: ColorsManager.whitecolor,
-        ),
-      ),
       appBar: AppBar(
         elevation: 0,
         title: Text(
@@ -35,7 +25,11 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.refresh_outlined))
+          IconButton(
+              onPressed: () {
+                taskProvider.loadTasks();
+              },
+              icon: const Icon(Icons.refresh_outlined))
         ],
       ),
       body: SafeArea(
@@ -43,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
               child: taskProvider.taskList.isEmpty
                   ? const Center(
-                      child: Text(''),
+                      child: Text(TextManager.noTasks),
                     )
                   : ListView.builder(
                       itemCount: taskProvider.taskList.length,

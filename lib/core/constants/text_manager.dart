@@ -42,7 +42,6 @@ class TextManager {
       'Erreur lors de la récupération de la position.';
 
   //  GENERAL
-  static const String appName = 'TaskFlow';
   static const String loading = 'Chargement...';
   static const String tryAgain = 'Réessayer';
   static const String cancel = 'Annuler';
