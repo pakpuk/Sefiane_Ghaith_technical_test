@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
 import 'package:ghaith_test/core/constants/text_manager.dart';
 import 'package:ghaith_test/core/constants/text_styles.dart';
-import 'package:ghaith_test/data/models/task_model.dart';
 import 'package:ghaith_test/presentation/screens/task_detail_screen.dart';
-import 'package:ghaith_test/presentation/widgets/task_List_widget.dart';
 import 'package:ghaith_test/presentation/widgets/task_widget.dart';
 import 'package:ghaith_test/providers/task_provider.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +39,7 @@ class HomeScreen extends StatelessWidget {
                       child: Text(TextManager.noTasks),
                     )
                   : ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       itemCount: taskProvider.taskList.length,
                       itemBuilder: (context, index) {
                         final task = taskProvider.taskList[index];
@@ -48,10 +47,12 @@ class HomeScreen extends StatelessWidget {
                             key: ValueKey(task.id),
                             direction: DismissDirection.endToStart,
                             background: Container(
+                              color: ColorsManager.redAccent,
                               alignment: Alignment.centerRight,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   const Icon(
                                     Icons.delete,
@@ -74,7 +75,9 @@ class HomeScreen extends StatelessWidget {
                               taskProvider.deleteTask(task.id);
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
-                                content: const Text(TextManager.deletetask),
+                                duration: const Duration(seconds: 2),
+                                content:
+                                    Text('Tâche "${task.title}" est supprimée'),
                                 action: SnackBarAction(
                                     label: TextManager.undoTxt,
                                     onPressed: () {
@@ -85,7 +88,11 @@ class HomeScreen extends StatelessWidget {
                             child: TaskWidget(
                               task: task,
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>TaskDetailScreen()))
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            TaskDetailScreen()));
                               },
                               ontoggle: () {
                                 taskProvider.toggleTaskCompletion(task.id);
