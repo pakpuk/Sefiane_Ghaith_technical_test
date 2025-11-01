@@ -48,78 +48,78 @@ class _LoginScreenState extends State<LoginScreen> {
     final visibilityProvider = Provider.of<PasswordVisibilityProvider>(context);
     return Scaffold(
       body: SafeArea(
-          child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 30.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(TextManager.welcomeBack, style: TextStyles.heading1),
-                SizedBox(
-                  height: 25.h,
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 30.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Spacer(),
+              Text(TextManager.welcomeBack, style: TextStyles.heading1),
+              SizedBox(
+                height: 25.h,
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      hintText: TextManager.emailHint,
+                      controller: emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return TextManager.errorEmptyEmail;
+                        }
+                        final emailRegex =
+                            RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                        if (!emailRegex.hasMatch(value)) {
+                          return TextManager.errorInvalidEmail;
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.h),
+                    TextFieldWidget(
+                      hintText: TextManager.passwordHint,
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return TextManager.errorEmptyPassword;
+                        }
+                        if (value.length < 8) {
+                          return TextManager.errorShortPassword;
+                        }
+                        return null;
+                      },
+                      obscureText: visibilityProvider.isObscureText,
+                      suffixIcon: IconButton(
+                        onPressed: () => visibilityProvider.toggleVisibility(),
+                        icon: visibilityProvider.isObscureText
+                            ? const Icon(Icons.visibility_off_outlined)
+                            : const Icon(Icons.visibility_outlined),
+                        color: ColorsManager.greycolor,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        TextManager.forgetPassword,
+                        style: TextStyles.font13semiboldprimary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    ButtonWidget(
+                        height: 120.h,
+                        title: TextManager.loginButton,
+                        onTap: () => _onLoginPressed())
+                  ],
                 ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFieldWidget(
-                        hintText: TextManager.emailHint,
-                        controller: emailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return TextManager.errorEmptyEmail;
-                          }
-                          final emailRegex =
-                              RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                          if (!emailRegex.hasMatch(value)) {
-                            return TextManager.errorInvalidEmail;
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 20.h),
-                      TextFieldWidget(
-                        hintText: TextManager.passwordHint,
-                        controller: passwordController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return TextManager.errorEmptyPassword;
-                          }
-                          if (value.length < 8) {
-                            return TextManager.errorShortPassword;
-                          }
-                          return null;
-                        },
-                        obscureText: visibilityProvider.isObscureText,
-                        suffixIcon: IconButton(
-                          onPressed: () =>
-                              visibilityProvider.toggleVisibility(),
-                          icon: visibilityProvider.isObscureText
-                              ? const Icon(Icons.visibility_off_outlined)
-                              : const Icon(Icons.visibility_outlined),
-                          color: ColorsManager.greycolor,
-                        ),
-                      ),
-                      SizedBox(height: 10.h),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          TextManager.forgetPassword,
-                          style: TextStyles.font13semiboldprimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      ButtonWidget(
-                          title: TextManager.loginButton,
-                          onTap: () => _onLoginPressed())
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       )),
