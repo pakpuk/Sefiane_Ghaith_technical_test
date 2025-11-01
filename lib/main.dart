@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
 import 'package:ghaith_test/presentation/screens/login_screen.dart';
 import 'package:ghaith_test/providers/password_visibility_provider.dart';
+import 'package:ghaith_test/providers/task_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PasswordVisibilityProvider()),
+        ChangeNotifierProvider(create: (_) => TaskProvider())
       ],
       child: ScreenUtilInit(
         designSize: const Size(1440, 3200),

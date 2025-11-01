@@ -3,20 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
 import 'package:ghaith_test/core/constants/text_manager.dart';
 import 'package:ghaith_test/core/constants/text_styles.dart';
+import 'package:ghaith_test/data/models/task_model.dart';
 import 'package:ghaith_test/presentation/screens/task_detail_screen.dart';
 import 'package:ghaith_test/presentation/widgets/task_List_widget.dart';
 import 'package:ghaith_test/presentation/widgets/task_widget.dart';
+import 'package:ghaith_test/providers/task_provider.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -29,7 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       appBar: AppBar(
-        title: const Text(TextManager.mestachesTxt),
+        elevation: 0,
+        title: Text(
+          TextManager.mestachesTxt,
+          style: TextStyles.heading1,
+        ),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.refresh_outlined))
@@ -38,11 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
-              child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return TaskWidget();
-                  }))),
+              child: taskProvider.taskList.isEmpty
+                  ? const Center(
+                      child: Text(''),
+                    )
+                  : ListView.builder(
+                      itemCount: taskProvider.taskList.length,
+                      itemBuilder: (context, index) {
+                        return TaskWidget();
+                      }))),
     );
   }
 }
