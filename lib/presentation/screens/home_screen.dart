@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     final taskProvider = Provider.of<TaskProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
           TextManager.mestachesTxt,
@@ -42,7 +43,54 @@ class HomeScreen extends StatelessWidget {
                   : ListView.builder(
                       itemCount: taskProvider.taskList.length,
                       itemBuilder: (context, index) {
-                        return TaskWidget();
+                        final task = taskProvider.taskList[index];
+                        return Dismissible(
+                            key: ValueKey(task.id),
+                            direction: DismissDirection.endToStart,
+                            background: Container(
+                              alignment: Alignment.centerRight,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.delete,
+                                    color: ColorsManager.whitecolor,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 8.w,
+                                  ),
+                                  Text(
+                                    TextManager.deletetask,
+                                    style: TextStyles.body.copyWith(
+                                        color: ColorsManager.whitecolor),
+                                  )
+                                ],
+                              ),
+                            ),
+                            onDismissed: (direction) {
+                              final deletedTask = task;
+                              taskProvider.deleteTask(task.id);
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: const Text(TextManager.deletetask),
+                                action: SnackBarAction(
+                                    label: TextManager.undoTxt,
+                                    onPressed: () {
+                                      taskProvider.restoreTask(deletedTask);
+                                    }),
+                              ));
+                            },
+                            child: TaskWidget(
+                              task: task,
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>TaskDetailScreen()))
+                              },
+                              ontoggle: () {
+                                taskProvider.toggleTaskCompletion(task.id);
+                              },
+                            ));
                       }))),
     );
   }

@@ -30,6 +30,8 @@ class TextManager {
   static const String refresh = 'Rafraîchir';
   static const String taskCompleted = 'Tâche terminée 🎉';
   static const String taskUncompleted = 'Tâche marquée comme non terminée';
+  static const String deletetask = 'Supprimer';
+  static const String taskDeleted = 'Tâche supprimée';
 
   //  MAP / LOCATION
   static const String myLocation = 'Ma position actuelle';
@@ -49,4 +51,5 @@ class TextManager {
   static const String ok = 'OK';
   static const String back = 'Retour';
   static const String mestachesTxt = 'Mes Tâches';
+  static const String undoTxt = 'Annuler';
 }
