@@ -30,6 +30,9 @@ class TaskWidget extends StatelessWidget {
           title: Text(
             task.title,
             style: TextStyles.font13bold.copyWith(
+                color: task.isCompleted
+                    ? ColorsManager.greycolor
+                    : ColorsManager.blackcolor,
                 decoration: task.isCompleted
                     ? TextDecoration.lineThrough
                     : TextDecoration.none),
