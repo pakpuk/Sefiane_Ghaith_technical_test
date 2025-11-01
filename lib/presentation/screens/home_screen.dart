@@ -9,15 +9,16 @@ import 'package:ghaith_test/providers/task_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        backgroundColor: ColorsManager.whitecolor,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: Text(
           TextManager.mestachesTxt,
           style: TextStyles.heading1,
@@ -91,8 +92,9 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            TaskDetailScreen()));
+                                        builder: (context) => TaskDetailScreen(
+                                              task: task,
+                                            )));
                               },
                               ontoggle: () {
                                 taskProvider.toggleTaskCompletion(task.id);
