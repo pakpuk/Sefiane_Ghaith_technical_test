@@ -28,8 +28,7 @@ class TaskDetailScreen extends StatelessWidget {
           style: TextStyles.heading1,
         ),
         leading: IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios, color: ColorsManager.blackcolor),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
       ),

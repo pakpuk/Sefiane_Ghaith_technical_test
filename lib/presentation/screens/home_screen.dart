@@ -102,19 +102,22 @@ class HomeScreen extends StatelessWidget {
                                     }),
                               ));
                             },
-                            child: TaskWidget(
-                              task: task,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => TaskDetailScreen(
-                                              task: task,
-                                            )));
-                              },
-                              ontoggle: () {
-                                taskProvider.toggleTaskCompletion(task.id);
-                              },
+                            child: FadeInUp(
+                              child: TaskWidget(
+                                task: task,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              TaskDetailScreen(
+                                                task: task,
+                                              )));
+                                },
+                                ontoggle: () {
+                                  taskProvider.toggleTaskCompletion(task.id);
+                                },
+                              ),
                             ));
                       }))),
     );

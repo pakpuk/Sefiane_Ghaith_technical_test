@@ -27,15 +27,18 @@ class TaskWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: ListTile(
-          title: Text(
-            task.title,
-            style: TextStyles.font13bold.copyWith(
-                color: task.isCompleted
-                    ? ColorsManager.greycolor
-                    : ColorsManager.blackcolor,
-                decoration: task.isCompleted
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none),
+          title: Hero(
+            tag: task.id,
+            child: Text(
+              task.title,
+              style: TextStyles.font13bold.copyWith(
+                  color: task.isCompleted
+                      ? ColorsManager.greycolor
+                      : ColorsManager.blackcolor,
+                  decoration: task.isCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none),
+            ),
           ),
           subtitle: Text(
             task.description,
