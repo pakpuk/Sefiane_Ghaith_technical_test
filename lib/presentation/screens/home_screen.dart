@@ -39,19 +39,21 @@ class HomeScreen extends StatelessWidget {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
               child: taskProvider.taskList.isEmpty
-                  ? Column(
-                      children: [
-                        FadeInUp(
-                          child: SizedBox(
-                            height: 200,
-                            width: 200,
-                            child: LottieBuilder.asset(
-                              TextManager.lottieUrl,
+                  ? Center(
+                      child: Column(
+                        children: [
+                          FadeInUp(
+                            child: SizedBox(
+                              height: 200,
+                              width: 200,
+                              child: LottieBuilder.asset(
+                                TextManager.lottieUrl,
+                              ),
                             ),
                           ),
-                        ),
-                        const Text(TextManager.noTasks),
-                      ],
+                          const Text(TextManager.noTasks),
+                        ],
+                      ),
                     )
                   : ListView.builder(
                       physics: const BouncingScrollPhysics(),
