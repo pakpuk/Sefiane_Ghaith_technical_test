@@ -17,8 +17,7 @@ class TaskDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context, listen: true);
-    
-    // Get the current task state from the provider
+
     final currentTask = taskProvider.taskList.firstWhere(
       (t) => t.id == task.id,
       orElse: () => task,
