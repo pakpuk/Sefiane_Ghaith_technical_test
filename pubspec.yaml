@@ -14,6 +14,7 @@ dependencies:
   # Responsive UI
   flutter_screenutil: ^5.9.3
 
+  # Animations
   lottie: ^3.2.0
   animate_do: ^4.2.0
 
@@ -23,20 +24,20 @@ dependencies:
   # Dialogs
   panara_dialogs: ^0.1.5
 
-  # API / HTTP simulation
+  # API / HTTP
   dio: ^5.7.0
 
-  # GPS & Map
-  geolocator: ^14.0.2
-  geolocator_android: ^5.0.2
-  google_maps_flutter: ^2.7.0
+  # GPS & Maps
+  google_maps_flutter: ^2.9.0
 
+
+  # Icons
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
