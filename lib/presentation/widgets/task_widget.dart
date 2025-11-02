@@ -16,8 +16,8 @@ class TaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
           color: task.isCompleted
               ? ColorsManager.greenColor.withOpacity(0.08)
@@ -27,22 +27,31 @@ class TaskWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: ListTile(
+          contentPadding: EdgeInsets.zero,
           title: Hero(
             tag: task.id,
-            child: Text(
-              task.title,
-              style: TextStyles.font13bold.copyWith(
-                  color: task.isCompleted
-                      ? ColorsManager.greycolor
-                      : ColorsManager.blackcolor,
-                  decoration: task.isCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none),
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                task.title,
+                style: TextStyles.taskTitle.copyWith(
+                    color: task.isCompleted
+                        ? ColorsManager.greycolor
+                        : ColorsManager.blackcolor,
+                    decoration: task.isCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none),
+              ),
             ),
           ),
-          subtitle: Text(
-            task.description,
-            style: TextStyles.smallText,
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              task.description,
+              style: TextStyles.smallText,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           trailing: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
@@ -53,6 +62,7 @@ class TaskWidget extends StatelessWidget {
             child: IconButton(
               key: ValueKey(task.isCompleted),
               onPressed: ontoggle,
+              iconSize: 28,
               icon: Icon(
                 task.isCompleted
                     ? Icons.check_circle

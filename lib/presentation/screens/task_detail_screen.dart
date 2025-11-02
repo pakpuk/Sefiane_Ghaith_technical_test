@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
+import 'package:ghaith_test/core/constants/font_weights.dart';
 import 'package:ghaith_test/core/constants/text_manager.dart';
 import 'package:ghaith_test/core/constants/text_styles.dart';
 import 'package:ghaith_test/data/models/task_model.dart';
@@ -15,7 +16,13 @@ class TaskDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+    final taskProvider = Provider.of<TaskProvider>(context, listen: true);
+    
+    // Get the current task state from the provider
+    final currentTask = taskProvider.taskList.firstWhere(
+      (t) => t.id == task.id,
+      orElse: () => task,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -25,9 +32,10 @@ class TaskDetailScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           TextManager.taskDetailTitle,
-          style: TextStyles.heading1,
+          style: TextStyles.heading2,
         ),
         leading: IconButton(
+          iconSize: 24,
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
@@ -39,61 +47,66 @@ class TaskDetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: task.id,
-                child: Text(
-                  task.title,
-                  style: TextStyles.heading2,
+                tag: currentTask.id,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    currentTask.title,
+                    style: TextStyles.heading2,
+                  ),
                 ),
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 16.h),
               Text(
-                task.description,
-                style: TextStyles.body,
+                currentTask.description,
+                style: TextStyles.body.copyWith(height: 1.5),
               ),
-              SizedBox(height: 25.h),
+              SizedBox(height: 30.h),
               Row(
                 children: [
+                  Icon(
+                    currentTask.isCompleted
+                        ? Icons.check_circle_outline_outlined
+                        : Icons.circle_outlined,
+                    color: currentTask.isCompleted
+                        ? ColorsManager.greenColor
+                        : ColorsManager.greycolor,
+                    size: 24,
+                  ),
+                  SizedBox(width: 10.w),
                   Text(
-                    task.isCompleted
+                    currentTask.isCompleted
                         ? TextManager.taskCompleted
                         : TextManager.taskUncompleted,
                     style: TextStyles.body.copyWith(
-                      color: task.isCompleted
+                      color: currentTask.isCompleted
                           ? ColorsManager.greenColor
                           : ColorsManager.greycolor,
+                      fontWeight: FontWeightHelper.medium,
                     ),
-                  ),
-                  SizedBox(width: 8.w),
-                  Icon(
-                    task.isCompleted
-                        ? Icons.check_circle_outline_outlined
-                        : Icons.circle_outlined,
-                    color: task.isCompleted
-                        ? ColorsManager.greenColor
-                        : ColorsManager.greycolor,
-                  ),
-                  const Spacer(),
-                  ButtonWidget(
-                    onTap: () {
-                      taskProvider.toggleTaskCompletion(task.id);
-                      Navigator.pop(context);
-                    },
-                    title: task.isCompleted
-                        ? TextManager.markAsNotDone
-                        : TextManager.markAsDone,
                   ),
                 ],
               ),
-              SizedBox(height: 30.h),
-              if (task.latitude != null && task.longitude != null)
+              SizedBox(height: 24.h),
+              ButtonWidget(
+                height: 56.h,
+                onTap: () {
+                  taskProvider.toggleTaskCompletion(currentTask.id);
+                },
+                title: currentTask.isCompleted
+                    ? TextManager.markAsNotDone
+                    : TextManager.markAsDone,
+              ),
+              SizedBox(height: 32.h),
+              if (currentTask.latitude != null && currentTask.longitude != null)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       TextManager.seeOnMap,
-                      style: TextStyles.font13bold,
+                      style: TextStyles.taskTitle,
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 16.h),
                     Container(
                         height: 250.h,
                         decoration: BoxDecoration(
@@ -106,14 +119,16 @@ class TaskDetailScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           child: GoogleMap(
                             initialCameraPosition: CameraPosition(
-                                target: LatLng(task.latitude!, task.longitude!),
+                                target: LatLng(currentTask.latitude!,
+                                    currentTask.longitude!),
                                 zoom: 14.5),
                             markers: {
                               Marker(
                                   markerId: const MarkerId('Task Location'),
-                                  position:
-                                      LatLng(task.latitude!, task.longitude!),
-                                  infoWindow: InfoWindow(title: task.title))
+                                  position: LatLng(currentTask.latitude!,
+                                      currentTask.longitude!),
+                                  infoWindow:
+                                      InfoWindow(title: currentTask.title))
                             },
                             zoomControlsEnabled: false,
                             myLocationButtonEnabled: false,

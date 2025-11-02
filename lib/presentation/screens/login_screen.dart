@@ -33,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text(TextManager.successLogin)));
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text(TextManager.failedLogin),
@@ -56,11 +56,11 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 60.h,
+                height: 80.h,
               ),
               Text(TextManager.welcomeBack, style: TextStyles.heading1),
               SizedBox(
-                height: 25.h,
+                height: 40.h,
               ),
               Form(
                 key: _formKey,
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 24.h),
                     TextFieldWidget(
                       hintText: TextManager.passwordHint,
                       controller: passwordController,
@@ -96,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       obscureText: visibilityProvider.isObscureText,
                       suffixIcon: IconButton(
+                        iconSize: 22,
                         onPressed: () => visibilityProvider.toggleVisibility(),
                         icon: visibilityProvider.isObscureText
                             ? const Icon(Icons.visibility_off_outlined)
@@ -103,19 +104,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: ColorsManager.greycolor,
                       ),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 16.h),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                         TextManager.forgetPassword,
-                        style: TextStyles.font13semiboldprimary,
+                        style: TextStyles.font15semiboldprimary,
                       ),
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 50.h,
                     ),
                     ButtonWidget(
-                        height: 120.h,
+                        height: 56.h,
                         title: TextManager.loginButton,
                         onTap: () => _onLoginPressed())
                   ],
