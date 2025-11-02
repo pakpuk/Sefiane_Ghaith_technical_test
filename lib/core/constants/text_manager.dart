@@ -1,4 +1,8 @@
 class TextManager {
+  // kichrol Constants
+
+  static String lottieUrl = 'assets/lottie/lottie.json';
+
   //  AUTH
   static const String welcomeBack = 'Bienvenue !';
   static const String emailHint = 'Adresse e-mail';

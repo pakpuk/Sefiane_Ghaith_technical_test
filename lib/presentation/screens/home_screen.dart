@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ghaith_test/core/constants/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:ghaith_test/core/constants/text_styles.dart';
 import 'package:ghaith_test/presentation/screens/task_detail_screen.dart';
 import 'package:ghaith_test/presentation/widgets/task_widget.dart';
 import 'package:ghaith_test/providers/task_provider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -37,15 +39,19 @@ class HomeScreen extends StatelessWidget {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
               child: taskProvider.taskList.isEmpty
-                  ? Center(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 200.h,
+                  ? Column(
+                      children: [
+                        FadeInUp(
+                          child: SizedBox(
+                            height: 200,
+                            width: 200,
+                            child: LottieBuilder.asset(
+                              TextManager.lottieUrl,
+                            ),
                           ),
-                          const Text(TextManager.noTasks),
-                        ],
-                      ),
+                        ),
+                        const Text(TextManager.noTasks),
+                      ],
                     )
                   : ListView.builder(
                       physics: const BouncingScrollPhysics(),
