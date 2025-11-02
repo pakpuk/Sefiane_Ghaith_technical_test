@@ -13,7 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskProvider = Provider.of<TaskProvider>(context);
+    final taskProvider = Provider.of<TaskProvider>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorsManager.whitecolor,
@@ -36,8 +37,15 @@ class HomeScreen extends StatelessWidget {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
               child: taskProvider.taskList.isEmpty
-                  ? const Center(
-                      child: Text(TextManager.noTasks),
+                  ? Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 200.h,
+                          ),
+                          const Text(TextManager.noTasks),
+                        ],
+                      ),
                     )
                   : ListView.builder(
                       physics: const BouncingScrollPhysics(),
