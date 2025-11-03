@@ -6,8 +6,8 @@ import 'package:ghaith_test/core/constants/text_manager.dart';
 import 'package:ghaith_test/core/constants/text_styles.dart';
 import 'package:ghaith_test/data/models/task_model.dart';
 import 'package:ghaith_test/presentation/widgets/button_custom_widget.dart';
+import 'package:ghaith_test/presentation/widgets/task_map_widget.dart';
 import 'package:ghaith_test/providers/task_provider.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class TaskDetailScreen extends StatelessWidget {
@@ -107,33 +107,21 @@ class TaskDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 16.h),
                     Container(
-                        height: 250.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: ColorsManager.textfieldbordercolor,
-                          ),
+                      height: 250.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: ColorsManager.textfieldbordercolor,
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: GoogleMap(
-                            initialCameraPosition: CameraPosition(
-                                target: LatLng(currentTask.latitude!,
-                                    currentTask.longitude!),
-                                zoom: 14.5),
-                            markers: {
-                              Marker(
-                                  markerId: const MarkerId('Task Location'),
-                                  position: LatLng(currentTask.latitude!,
-                                      currentTask.longitude!),
-                                  infoWindow:
-                                      InfoWindow(title: currentTask.title))
-                            },
-                            zoomControlsEnabled: false,
-                            myLocationButtonEnabled: false,
-                            compassEnabled: true,
-                          ),
-                        )),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: TaskMap(
+                          latitude: currentTask.latitude!,
+                          longitude: currentTask.longitude!,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
             ],
