@@ -86,7 +86,7 @@ Copier le code
 | Animations | lottie ^3.2.0, animate_do ^4.2.0 | Animations fluides |
 | Dialogues | panara_dialogs ^0.1.5 | Dialogues modernes |
 | API / HTTP | dio ^5.7.0 | Simulation d’API |
-| Cartes | google_maps_flutter ^2.9.0 | Intégration carte et GPS |
+| Cartes | flutter_maps ^7.0.2 | Intégration carte et GPS |
 | Icônes | cupertino_icons ^1.0.8 | Icônes iOS-style |
 
 💡 *Tous les packages choisis sont stables, maintenus et optimisés pour la production.*
