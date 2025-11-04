@@ -1,176 +1,170 @@
- Test Technique Flutter – Ghaith Sefiane
- 
-🏁 1. Introduction
+# 🚀 Flutter Technical Test by Ghaith Sefiane
 
-Ce projet a été développé dans le cadre d’un test technique Flutter afin d’évaluer mes compétences en :
+A clean, scalable, and fully responsive **Flutter Task Manager** built as part of a technical test.  
+The app demonstrates advanced state management, smooth animations, modern UI/UX, and an optional GPS map integration.
 
-Développement mobile multiplateforme (Flutter)
+---
 
-Architecture logicielle propre et maintenable
+## 🏁 1. Introduction
 
-Conception UI/UX fluide, moderne et cohérente
+Ce projet a été réalisé dans le cadre d’un **test technique Flutter** visant à évaluer mes compétences en :
 
-Gestion d’état et intégration de fonctionnalités avancées
+- 📱 Développement mobile multiplateforme
+- 🧩 Architecture logicielle propre et scalable
+- 🎨 Conception d’expériences utilisateurs fluides et modernes (UI/UX)
 
-L’application est un Task Manager complète et réactive, proposant :
+### 📋 L’application comprend :
+- 🔐 Une page de connexion avec validation des formulaires  
+- 🧾 Une liste de tâches connectée à une API simulée (JSON local)  
+- 📋 Un écran de détail de tâche avec marquage comme terminée  
+- 🗺️ **Bonus :** affichage de la position GPS sur Google Maps  
+- ✨ Interface fluide avec animations et transitions cohérentes  
 
-🔐 Écran de connexion avec validation dynamique
+---
 
-🧾 Liste de tâches interactive avec Provider
+## 🏗️ 2. Architecture et Structure du projet
 
-📋 Détails d’une tâche avec statut et description
-
-🗺️ Bonus : Affichage de la position GPS sur Flutter Map (OpenStreetMap)
-
-✨ Expérience fluide avec animations, transitions et feedback utilisateur
-
-🏗️ 2. Architecture du projet
-
-Le projet suit une structure modulaire inspirée de la Clean Architecture, garantissant clarté, évolutivité et maintenabilité.
+Le projet suit une architecture modulaire et maintenable, inspirée des principes de la **Clean Architecture**.
 
 lib/
 │
 ├── core/
-│   ├── constants/         # Couleurs, textes, styles et poids de police
-
-│   ├── utils/             # Fonctions utilitaires
+│ ├── constants/ # Couleurs, styles, textes, poids de police
 
 │
 ├── data/
-│   └── models/            # Modèle de données (TaskModel)
+│ └── models/ # Modèle de données : TaskModel
 
 │
-├── providers/             # Gestion d’état via Provider
+├── providers/ # Gestion d’état via Provider
 
 │
 ├── presentation/
-│   ├── screens/           # Pages : Login, Home, TaskDetail
+│ ├── screens/ # Écrans : Login, Home, TaskDetail
 
-│   └── widgets/           # Widgets réutilisables : Button, TextField, TaskItem
-
+│ └── widgets/ # Widgets réutilisables : Button, TaskWidget, etc.
 │
-└── main.dart              # Point d’entrée de l’application
+└── main.dart # Point d'entrée de l'application
 
-💡 Pro Tips
+yaml
+Copier le code
 
-Séparation claire entre interface, logique métier et état
+### 💡 Pro Tips
+- Séparation claire entre UI / logique métier / état.  
+- Widgets réutilisables (TaskWidget, ButtonCustom) pour cohérence et performance.  
+- Provider assure une gestion d’état fluide sans rebuilds inutiles.  
 
-Widgets réutilisables pour cohérence et performance
+---
 
-Provider utilisé pour une gestion d’état légère et fluide
+## ⚙️ 3. Fonctionnalités Clés et Expérience Utilisateur
 
-⚙️ 3. Fonctionnalités principales
-🧾 Liste de tâches
+### 🧾 Liste de tâches
+- Marquage instantané comme terminée via Provider.  
+- Animation FadeInUp à l’apparition.  
+- Suppression fluide avec Dismissible + Snackbar.  
+- Si la liste est vide → Animation Lottie.
 
-Chargement depuis un fichier JSON local (simulation API)
+### 📋 Détail de la tâche
+- Transition Hero entre la liste et le détail.  
+- Possibilité de marquer la tâche comme terminée.  
+- Affichage conditionnel de la carte Google Maps selon les coordonnées GPS.  
+- Snackbar pour informer de la mise à jour réussie.
 
-Mise à jour instantanée du statut via Provider
+### 🔐 Connexion
+- Validation de formulaire sécurisée.  
+- Gestion de visibilité du mot de passe via Provider.  
+- Design 100% responsive (flutter_screenutil).
 
-Suppression fluide via Dismissible + animation
+---
 
-Animation Lottie lorsqu’aucune tâche n’est disponible
+## 🧱 4. Stack Technique
 
-Effet FadeInUp pour une apparition dynamique
+| Domaine | Package / Outil | Rôle |
+|----------|----------------|------|
+| State Management | provider ^6.1.2 | Gestion d’état réactive |
+| Responsive Design | flutter_screenutil ^5.9.3 | Adaptation multi-écrans |
+| Animations | lottie ^3.2.0, animate_do ^4.2.0 | Animations fluides |
+| Dialogues | panara_dialogs ^0.1.5 | Dialogues modernes |
+| API / HTTP | dio ^5.7.0 | Simulation d’API |
+| Cartes | google_maps_flutter ^2.9.0 | Intégration carte et GPS |
+| Icônes | cupertino_icons ^1.0.8 | Icônes iOS-style |
 
-📋 Détail d’une tâche
+💡 *Tous les packages choisis sont stables, maintenus et optimisés pour la production.*
 
-Transition Hero entre la liste et la page détail
+---
 
-Possibilité de marquer/démarquer la tâche comme terminée
+## 🧾 5. Permissions et Configuration
 
-Carte Flutter Map (OpenStreetMap) intégrée pour visualiser la position de la tâche
-
-SnackBar de confirmation après mise à jour
-
-🔐 Connexion
-
-Validation de formulaire sécurisée (email & mot de passe)
-
-Gestion de la visibilité du mot de passe avec Provider
-
-Interface 100% responsive grâce à flutter_screenutil
-
-📦 4. Packages utilisés
-Package	Version	Utilisation
-provider	^6.1.2	Gestion d’état réactive
-flutter_screenutil	^5.9.3	Design adaptatif
-dio	^5.7.0	Simulation d’API (fichier JSON local)
-panara_dialogs	^0.1.5	Dialogues modernes
-lottie	^3.2.0	Animations fluides
-flutter_map	^7.0.0	Affichage de carte OpenStreetMap
-latlong2	^0.9.0	Gestion des coordonnées
-cupertino_icons	^1.0.8	Icônes iOS-style
-
-💡 Les packages sélectionnés sont stables, bien maintenus et légers, parfaits pour un MVP professionnel.
-
-🧾 5. Permissions & Configuration
-📱 Android – AndroidManifest.xml
+### 📱 Android – `AndroidManifest.xml`
+```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.INTERNET" />
-
 🍏 iOS – Info.plist
+xml
+Copier le code
 <key>NSLocationWhenInUseUsageDescription</key>
-<string>Votre position est utilisée pour afficher la carte de la tâche.</string>
+<string>Votre position sera utilisée pour afficher votre emplacement sur la carte.</string>
 
 <key>io.flutter.embedded_views_preview</key>
 <true/>
+🎨 6. Design et Expérience Utilisateur (UI/UX)
+Palette de couleurs, typographie et tailles gérées dans :
 
-🎨 6. Design & Expérience Utilisateur
+app_colors.dart
 
-L’expérience utilisateur repose sur la fluidité et la clarté visuelle :
+text_styles.dart
 
-🎬 FadeInUp : apparition animée des éléments
+font_weights.dart
 
-🗑️ Dismissible : suppression fluide des tâches
+✨ Animations intégrées :
+FadeInUp → Apparition fluide des tâches
 
-🪄 Lottie : feedback visuel lorsque la liste est vide
+Dismissible → Suppression avec animation
 
-⚡ Hero Transition : passage fluide entre la liste et les détails
+Lottie → Liste vide
 
-💬 SnackBar : retour utilisateur immédiat
+Hero → Transition fluide entre écrans
 
-Palette cohérente et typographie harmonieuse définies dans app_colors.dart et text_styles.dart.
+💡 Les micro-animations renforcent la perception de fluidité sans nuire aux performances.
 
-🧠 7. Bonnes pratiques appliquées
-
-✅ Architecture modulaire et maintenable
-
-✅ Code clair, commenté et bien nommé
-
-✅ Séparation UI / logique / état
-
+🧠 7. Bonnes Pratiques Appliquées
+✅ Clean Architecture (UI / logique / état séparés)
+✅ Nommage cohérent et code commenté
+✅ Widgets découplés et réutilisables
 ✅ Validation sécurisée des formulaires
+✅ Animations légères et performantes
+✅ Provider centralisé pour la réactivité
 
-✅ Widgets réutilisables pour optimiser la cohérence
-
-✅ Performance optimisée (animations légères, Provider efficace)
-
-💻 8. Installation & Exécution
-
+💻 8. Installation et Exécution
+bash
+Copier le code
+# 1️⃣ Cloner le projet
 git clone https://github.com/pakpuk/Sefiane_Ghaith_technical_test.git
 
+# 2️⃣ Entrer dans le dossier
 cd Sefiane_Ghaith_technical_test
 
+# 3️⃣ Installer les dépendances
 flutter pub get
 
+# 4️⃣ Lancer l’application
 flutter run
-
-🔮 9. Améliorations futures
-
+🔮 9. Améliorations Futures
 🔐 Authentification Firebase / Supabase
 
-💾 Persistance locale (Hive / SQLite)
+💾 Persistance locale (Hive)
 
-🔔 Notifications Push (Firebase Cloud Messaging)
+🔔 Notifications push (rappels)
 
-🌐 Intégration API REST réelle
+🌐 Synchronisation en temps réel (API REST)
 
-🎛️ Filtres et tri dynamique des tâches
+🎛️ Filtres, tri et recherche de tâches
 
-✨ Micro-interactions avancées
+✨ Micro-interactions et retours haptiques
+
 
 👨‍💻 10. Auteur
-
 Ghaith Sefiane
-Flutter Developer | UI/UX Designer | Passionné par le Clean Code et les expériences utilisateurs modernes
+Flutter Developer | UI/UX Designer
+💼 Passionné par le clean code, les micro-interactions et l’optimisation UX
